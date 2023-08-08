@@ -33,6 +33,47 @@
 </br>
 
 
+## 📌 What I Do
+### JSONEncoder, JSONDecoder 사용
+
+- records 배열을 인코딩하여 Json파일로 데이터 변환하여 `UserDefaults`에 저장
+- `UserDefaults`에 저장된 데이터를 디코딩을 통해 `Record`타입으로 반환
+
+```swift
+do {
+  let endcoder: JSONEncoder = JSONEncoder()
+  let data: Data = try endcoder.encode(records)
+  UserDefaults.standard.set(data, forKey: UserDefaultsKey.records.rawValue)
+
+} catch {
+  print(error.localizedDescription)
+}
+```
+
+```swift
+do {
+  if let data = UserDefaults.standard.object(forKey: UserDefaultsKey.records.rawValue) as? Data {
+    let decoder: JSONDecoder = JSONDecoder()
+    return try decoder.decode([Record].self, from: data)
+  }
+
+} catch {
+  print(error.localizedDescription)
+}
+```
+
+
+
+
+</br>
+</br>
+</br>
+</br>
+
+
+
+
+
 
 ## 📌 미리보기
 
